@@ -12,10 +12,10 @@ app.controller('mainCtrl', function ($scope, Calculator) {
     $scope.sign = '+';
     $scope.result = 0;
 
-    $scope.doCalculations = function(sign, d1, h1, m1, d2, h2, m2){
-        switch(sign){
-            case '+': $scope.result = Calculator.add(Calculator.transformToMinutes(d1, h1, m1), Calculator.transformToMinutes(d2, h2, m2)); break;
-            case '-': $scope.result = Calculator.sub(Calculator.transformToMinutes(d1, h1, m1), Calculator.transformToMinutes(d2, h2, m2)); break;
+    $scope.doCalculations = function(){
+        switch($scope.sign){
+            case '+': $scope.result = Calculator.add(Calculator.transformToMinutes($scope.values.d1, $scope.values.h1, $scope.values.m1), Calculator.transformToMinutes($scope.values.d2, $scope.values.h2, $scope.values.m2)); break;
+            case '-': $scope.result = Calculator.sub(Calculator.transformToMinutes($scope.values.d1, $scope.values.h1, $scope.values.m1), Calculator.transformToMinutes($scope.values.d2, $scope.values.h2, $scope.values.m2)); break;
         }
     };
 });
@@ -31,17 +31,26 @@ app.service('Calculator', function(){
         var result = [];
         result.d = Math.floor((Math.floor(sum /60))/8);
         result.h = Math.floor(sum/60) % 8;
-        result.m = sum - (result.d * 60 * 8) - (result.h * 60);
+        result.m = sum - (this.betrag(result.d) * 60 * 8) - (this.betrag(result.h) * 60);
         return result;
     };
 
     this.sub = function(t1, t2){
         var sub = t1 - t2;
         var result = [];
-        result.d = Math.floor((Math.floor(sub /60))/8);
-        result.h = Math.floor(sub/60) % 8;
-        result.m = sub - (result.d * 60 * 8) - (result.h * 60);
+        result.d = Math.floor((Math.floor(sub/60)) / 8);
+        result.h = this.betrag(Math.floor(sub/60)) % 8;
+        result.m = this.betrag(sub) % 60;
         return result;
+    };
+
+    this.betrag = function(num) {
+      if(num < 0) {
+        return -1 * num;
+      } else {
+        return num;
+      }
+
     };
 
 });
