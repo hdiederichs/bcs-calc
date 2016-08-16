@@ -9,6 +9,20 @@ app.controller('mainCtrl', function ($scope, Calculator) {
         h2: 0,
         m2: 0
     };
+
+    //TODO
+    /*$scope.ops = [{
+      days : 0,
+      hours : 0,
+      minutes : 0,
+      operator: '+'
+    }, {
+      days : 0,
+      hours : 0,
+      minutes : 0,
+      operator: '+'
+    }];*/
+
     $scope.sign = '+';
     $scope.result = 0;
 
