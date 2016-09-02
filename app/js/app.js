@@ -63,8 +63,14 @@ app.service('Calculator', function(){
 
     this.toResultObject = function(minutes) {
       result = {};
+      if(minutes < 0) {
+        result.sign = '-';
+        minutes = minutes * -1;
+      } else {
+        result.sign = '+';
+      }
       result.d = Math.floor((Math.floor(minutes /60))/8);
-      result.h = Math.floor(this.betrag(minutes) / (60*8));
+      result.h = Math.floor(this.betrag(minutes /60)) % 8;
       result.m = this.betrag(minutes) % 60;
       return result;
     };
@@ -89,10 +95,6 @@ app.factory('focus', function($timeout, $window) {
         var element = $window.document.getElementById(id);
         if(element)
           element.focus();
-        if(!$window.getSelection().toString()) {
-          // Required for mobile Safari
-          element.setSelectionRange(0, element.value.length);
-        }
       });
     };
   });
