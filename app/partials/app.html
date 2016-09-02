@@ -4,39 +4,34 @@
     <h1>Time Calculator</h1>
   </div>
   <div class="form">
-    <div class="row">
+    <div class="row" ng-repeat="operation in ops">
       <div class="form-group col-xs-3">
            <label>Tage:</label>
-          <input type="number" class="form-control" min="0" ng-model="values.d1" ng-change="doCalculations()">
+          <input id="days{{$last ? '_last' : '_'+$index}}" class="form-control" min="0" ng-model="operation.days" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
       </div>
       <div class="form-group col-xs-3">
           <label>Stunden:</label>
-          <input type="number" class="form-control" min="0" ng-model="values.h1" ng-change="doCalculations()">
+          <input class="form-control" min="0" ng-model="operation.hours" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
       </div>
       <div class="form-group col-xs-3">
           <label>Minuten:</label>
-          <input type="number" class="form-control" min="0" ng-model="values.m1" ng-change="doCalculations()">
+          <input class="form-control" min="0" ng-model="operation.minutes" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
       </div>
-      <div class="form-group col-xs-3">
-          <label>Rechnung</label>
-          <select ng-model="sign" ng-change="doCalculations()">
-              <option value="+">+
-              <option value="-">-
-          </select>
+      <div class="form-group col-xs-3" ng-hide="$last">
+        <label>Operator:</label>
+        <button class="btn btn-success btn-sm" type="submit" disabled="disabled">
+          <span class="glyphicon glyphicon-minus" aria-hidden="true" ng-show="operation.operator == -1"></span>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true" ng-show="operation.operator == 1"></span>
+        </button>
       </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-xs-3">
-          <label>Tage:</label>
-          <input type="number" class="form-control" min="0" ng-model="values.d2" ng-change="doCalculations()">
-      </div>
-      <div class="form-group col-xs-3">
-          <label>Stunden:</label>
-          <input type="number" class="form-control" min="0" ng-model="values.h2" ng-change="doCalculations()">
-      </div>
-      <div class="form-group col-xs-3">
-          <label>Minuten:</label>
-          <input type="number" class="form-control" min="0" ng-model="values.m2" ng-change="doCalculations()">
+      <div class="form-group col-xs-3" ng-show="$last">
+        <label>Operator:</label>
+        <button class="btn btn-success btn-sm" type="submit" ng-click="add()">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <button class="btn btn-success btn-sm" type="submit" ng-click="subtract()">
+          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
 
