@@ -7,15 +7,15 @@
     <div class="row" ng-repeat="operation in ops">
       <div class="form-group col-xs-3">
            <label>Tage:</label>
-          <input id="days{{$last ? '_last' : '_'+$index}}" type="number" class="form-control" min="0" ng-model="operation.days" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
+          <input id="days{{$last ? '_last' : '_'+$index}}" class="form-control" min="0" ng-model="operation.days" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
       </div>
       <div class="form-group col-xs-3">
           <label>Stunden:</label>
-          <input type="number" class="form-control" min="0" ng-model="operation.hours" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
+          <input class="form-control" min="0" ng-model="operation.hours" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
       </div>
       <div class="form-group col-xs-3">
           <label>Minuten:</label>
-          <input type="number" class="form-control" min="0" ng-model="operation.minutes" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
+          <input class="form-control" min="0" ng-model="operation.minutes" ng-change="doCalculations()" ng-keyup="keyPressed($event)" only-numbers ng-trim="false">
       </div>
       <div class="form-group col-xs-3" ng-hide="$last">
         <label>Operator:</label>
