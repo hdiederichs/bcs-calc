@@ -9,7 +9,13 @@ app.controller('mainCtrl', function ($scope, Calculator, focus) {
     }];
 
     $scope.resultinminutes = 0;
-    $scope.result = {};
+    $scope.result = {
+      minutes_raw : 0,
+      d: 0,
+      h: 0,
+      m: 0,
+      sign: ""
+    };
 
     $scope.doCalculations = function(){
         $scope.resultinminutes = Calculator.transformToMinutes($scope.ops[0].days, $scope.ops[0].hours, $scope.ops[0].minutes);
@@ -58,16 +64,17 @@ app.controller('mainCtrl', function ($scope, Calculator, focus) {
 app.service('Calculator', function(){
 
     this.transformToMinutes = function(d, h, m){
-        return d*8*60 + h*60 + m;
+        return parseInt(d)*8*60 + parseInt(h)*60 + parseInt(m);
     };
 
     this.toResultObject = function(minutes) {
       result = {};
+      result.minutes_raw = minutes;
       if(minutes < 0) {
         result.sign = '-';
         minutes = minutes * -1;
       } else {
-        result.sign = '+';
+        result.sign = '';
       }
       result.d = Math.floor((Math.floor(minutes /60))/8);
       result.h = Math.floor(this.betrag(minutes /60)) % 8;

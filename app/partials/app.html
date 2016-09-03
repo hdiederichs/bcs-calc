@@ -36,23 +36,9 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-xs-3">
-          <label>=</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-xs-3">
-        <label>Tage:</label>
-        {{result.sign}}<input type="number" class="form-control" value="{{result.d}}" readonly>
-      </div>
-      <div class="form-group col-xs-3">
-        <label>Stunden:</label>
-        <input type="number" class="form-control" value="{{result.h}}" readonly>
-      </div>
-      <div class="form-group col-xs-3">
-        <label>Minuten:</label>
-        <input type="number" class="form-control" value="{{result.m}}" readonly>
+      <div class="form-group col-xs-12">
+        <h3>Ergebnis:</h3>
+        <h4>= {{result.sign}} {{result.d}}t {{result.h}}:{{result.m}}h</h4>
       </div>
     </div>
   </div>
