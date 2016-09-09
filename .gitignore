@@ -2,3 +2,10 @@ node_modules
 bower_components
 dist
 .idea
+BcsCalc-darwin-x64
+BcsCalc-linux-armv7l
+BcsCalc-linux-ia32
+BcsCalc-linux-x64
+BcsCalc-mas-x64
+BcsCalc-win32-ia32
+BcsCalc-win32-x64
