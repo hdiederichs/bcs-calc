@@ -14,6 +14,9 @@ app.controller('mainCtrl', function ($scope, Calculator, focus) {
       d: 0,
       h: 0,
       m: 0,
+	  dStr: "0",
+	  hStr: "00",
+	  mStr: "00",
       sign: ""
     };
 
@@ -57,6 +60,25 @@ app.controller('mainCtrl', function ($scope, Calculator, focus) {
       $scope.doCalculations();
       focus('days_last');
     };
+    $scope.reset = function() {
+		$scope.ops = [{
+			days : 0,
+			hours : 0,
+			minutes : 0,
+			operator: 1
+		}];
+		$scope.resultinminutes = 0;
+		$scope.result = {
+			minutes_raw : 0,
+			d: 0,
+			h: 0,
+			m: 0,
+			dStr: "0",
+			hStr: "00",
+			mStr: "00",
+			sign: ""
+		};
+	};
 
     focus('days_last');
 });
@@ -79,6 +101,10 @@ app.service('Calculator', function(){
       result.d = Math.floor((Math.floor(minutes /60))/8);
       result.h = Math.floor(this.betrag(minutes /60)) % 8;
       result.m = this.betrag(minutes) % 60;
+
+	  result.dStr = "" + result.d;
+	  result.hStr = "0" + result.h;
+	  result.mStr = result.m < 10 ? "0" + result.m : "" + result.m;
       return result;
     };
 
@@ -100,8 +126,11 @@ app.factory('focus', function($timeout, $window) {
       // are triggered.
       $timeout(function() {
         var element = $window.document.getElementById(id);
-        if(element)
-          element.focus();
+        if (element) {
+			element.focus();
+			element.select();
+		}
+
       });
     };
   });

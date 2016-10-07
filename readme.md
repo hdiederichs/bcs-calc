@@ -2,6 +2,21 @@
 
 > A calculator for adding and subtracting working hours
 
+## Patch notes
+
+### 1.1
+
+Added a reset button.
+
+Fixed issues:
+
+  - Issue #5 Make reset possible
+  - Issue #6 Add 0 to single numbers in result
+
+### 1.0
+
+Initial version with basic functionality.
+It is possible to add and substract times.
 
 ## Dev
 
