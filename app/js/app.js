@@ -29,9 +29,9 @@ app.controller('mainCtrl', function ($scope, Calculator, focus) {
     };
 
     $scope.keyPressed = function(event) {
-      if(event.keyCode == 187) {
+      if(event.keyCode == 187 || event.keyCode == 107) {
         $scope.add();
-      } else if (event.keyCode == 189) {
+      } else if (event.keyCode == 189 || event.keyCode == 109) {
         $scope.subtract();
       }
     };
